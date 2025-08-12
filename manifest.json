@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2.0,
+  "id": "logviewer",
+  "type": "widget",
+  "name": "Log Viewer",
+  "namespace": "Logviewer",
+  "version": "1.0",
+  "author": "Your Name",
+  "description": "Displays HTML+JS content from a Zabbix item (e.g., vfs.file.contents[]).",
+  "url": "web_interface/frontend_sections/dashboards/widgets/logviewer",
+  "widget": {
+    "size": {
+      "width": 12,
+      "height": 3
+    },
+    "js_class": "CWidgetLogviewer",
+    "in": {
+      "itemid": {
+        "type": "_itemid",
+        "required": true
+      }
+    }
+  },
+  "actions": {
+    "widget.logviewer.view": {
+      "class": "WidgetView"
+    }
+  },
+  "assets": {
+    "js": ["class.widget.js"]
+  }
+}

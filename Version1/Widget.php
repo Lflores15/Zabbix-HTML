@@ -6,6 +6,6 @@ use Zabbix\Core\CWidget;
 
 class Widget extends CWidget {
     public function getDefaultName(): string {
-        return _('Log Viewer');
+        return _(message: 'Log Viewer');
     }
 }

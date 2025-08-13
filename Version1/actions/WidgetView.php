@@ -3,14 +3,13 @@
 namespace Widgets\Logviewer\Actions;
 
 use CControllerDashboardWidgetView;
-use CControllerResponseData;
 
 class WidgetView extends CControllerDashboardWidgetView {
     protected function doAction(): void {
         $payload = [
             'name' => 'Log Viewer',
-            'info' => [],                    // dashboard expects this
-            'user' => ['debug_mode' => 0],   // and this
+            'info' => [],
+            'user' => ['debug_mode' => 0],
             'value' => '',
             'encoding' => 'base64'
         ];
@@ -68,16 +67,16 @@ class WidgetView extends CControllerDashboardWidgetView {
             $payload['error'] = 'Controller error';
         }
 
-        // Force JSON response to avoid empty body issues
-        while (ob_get_level() > 0) { ob_end_clean(); }
+        // Wrap in { data: ... } envelope expected by jsLoader
+        $response = ['data' => $payload];
+
+        while (ob_get_level() > 0) { @ob_end_clean(); }
         if (!headers_sent()) {
             header('Content-Type: application/json; charset=utf-8');
             header('Cache-Control: no-store');
         }
-        echo json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         exit;
-
-        // If you prefer framework response, comment out the block above and use the line below instead
-        // $this->setResponse(new CControllerResponseData($payload));
     }
 }
+

@@ -11,3 +11,4 @@ $form = new CWidgetFormView($data);
 $form
 	->addField(new CWidgetFieldMultiSelectItemView($data['fields']['itemid']))
 	->show();
+

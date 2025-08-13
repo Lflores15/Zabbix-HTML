@@ -109,3 +109,4 @@ class CWidgetLogviewer extends CWidget {
 if (typeof window !== 'undefined') {
 	window.CWidgetLogviewer = window.CWidgetLogviewer || CWidgetLogviewer;
 }
+
